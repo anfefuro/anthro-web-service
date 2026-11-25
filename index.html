@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Valoración Antropométrica OMS</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📏</text></svg>" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@stlite/browser@1.12.3/build/stlite.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module">
+      import { mount } from "https://cdn.jsdelivr.net/npm/@stlite/browser@1.12.3/build/stlite.js";
+
+      // stlite ejecuta la app de Streamlit dentro del navegador (Python compilado a WebAssembly).
+      // Cada archivo se descarga desde este mismo sitio y se coloca en el sistema de archivos virtual.
+      mount(
+        {
+          entrypoint: "app.py",
+          requirements: ["pandas", "numpy", "matplotlib", "python-dateutil"],
+          files: {
+            "app.py": { url: "./app.py" },
+            "antropometria.py": { url: "./antropometria.py" },
+            ".streamlit/config.toml": { url: "./.streamlit/config.toml" },
+            "datos_oms/wfl.csv": { url: "./datos_oms/wfl.csv" },
+            "datos_oms/wfh.csv": { url: "./datos_oms/wfh.csv" },
+            "datos_oms/len.csv": { url: "./datos_oms/len.csv" },
+            "datos_oms/bfa.csv": { url: "./datos_oms/bfa.csv" },
+            "datos_oms/hfa.csv": { url: "./datos_oms/hfa.csv" },
+          },
+        },
+        document.getElementById("root"),
+      );
+    </script>
+  </body>
+</html>
